@@ -1,7 +1,7 @@
 ﻿using BFF.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BFF
+namespace BFF.BFFs
 {
 	[ApiController]
 	[Route("/v1/app/[controller]")]
