@@ -52,6 +52,22 @@ namespace BFF.BFFs
 			else
 				return NoContent();
 		}
+
+		[HttpGet("{id}/pedidos/{codpedido}/produtos/{codproduto}")]
+		public ActionResult<Produto> GetEntregadorPedidoProduto([FromRoute] int id, [FromRoute] int codpedido, [FromRoute] int codproduto)
+		{
+			var pedido = new Controllers.PedidosController().GetPedido(codpedido).Value;
+
+			if (pedido != null && pedido.Itens.Contains(codproduto))
+			{
+				var produto = new Controllers.ProdutosController().GetProduto(codproduto);
+
+				if (produto != null)
+					return produto;
+			}
+
+			return NoContent();
+		}
 	}
 }
 
