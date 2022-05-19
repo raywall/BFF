@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Dapper;
 using BFF.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BFF.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("v1/[controller]")]
 [ApiExplorerSettings(IgnoreApi = true)]

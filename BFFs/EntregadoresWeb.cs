@@ -1,8 +1,10 @@
 ﻿using BFF.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BFF.BFFs
 {
+	[Authorize]
 	[ApiController]
 	[Route("/v1/app/[controller]")]
 	public class Entregadores : ControllerBase
