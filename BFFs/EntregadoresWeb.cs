@@ -24,10 +24,10 @@ namespace BFF.BFFs
 		[HttpGet("{id}/pedidos")]
 		public ActionResult<IEnumerable<Pedido>> GetEntregadorPedidos([FromRoute] int id, [FromQuery] string? nome_contains)
         {
-			var pedidos = new Controllers.PedidosController().Get().Value?.Where(w => w.IDEntregador == id).ToArray();
+			var pedidos = new Controllers.PedidosController().Get().Value?.Where(w => w.IDEntregador == id).ToList();
 			
 			if (pedidos != null && !string.IsNullOrEmpty(nome_contains))
-				pedidos = pedidos.Where(w => !string.IsNullOrEmpty(w.NomeCliente) && w.NomeCliente.Contains(nome_contains)).ToArray();
+				pedidos = pedidos.Where(w => !string.IsNullOrEmpty(w.NomeCliente) && w.NomeCliente.Contains(nome_contains)).ToList();
 
 			if (pedidos != null)
 				return pedidos;

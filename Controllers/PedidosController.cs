@@ -12,7 +12,7 @@ namespace BFF.Controllers;
 public class PedidosController : Data.Connection
 {
     [HttpGet]
-    public ActionResult<IEnumerable<Pedido>> Get()
+    public ActionResult<Pedidos> Get()
     {
         try
         {
@@ -41,10 +41,10 @@ public class PedidosController : Data.Connection
                     splitOn: "IDPedido, ID")
 
                 .AsEnumerable()
-                .ToArray();
+                .ToList();
 
             if (pedidos != null && pedidos.Count() > 0)
-                return pedidos;
+                return (Pedidos)pedidos;
 
             else
                 return NoContent();

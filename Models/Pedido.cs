@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using BFF.Classes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -13,17 +14,15 @@ namespace BFF.Models
 			Itens = new List<int>();
         }
 
-		[JsonProperty("id-pedido")]
+		[JsonProperty("idPedido")]
         public int IDPedido { get; set; }
 
-		[JsonProperty("id-entregador")]
+		[JsonProperty("idEntregador")]
 		[Required(ErrorMessage = "É necessário informar o ID do entregador")]
-		[Display(Name = "Entregador")]
         public int IDEntregador { get; set; }
 
-		[JsonProperty("nome-cliente")]
+		[JsonProperty("nomeCliente")]
         [Required(ErrorMessage = "Informe o nome do cliente")]
-		[Display(Name = "Nome do cliente")]
         public string? NomeCliente { get; set; }
 
 		[JsonProperty("emailCliente")]
@@ -33,17 +32,18 @@ namespace BFF.Models
 
 		[JsonProperty("endereco")]
         [Required(ErrorMessage = "Informe o endereço de entrega do cliente")]
-		[Display(Name = "Endereço de entrega")]
         public string? Endereco { get; set; }
 
 		[JsonProperty("itens")]
-		[Display(Name = "Ítens do pedido")]
+        [MinLength(1, ErrorMessage = "A quantidade de ítens do pedido deve ser de no mínimo 1 (uma) unidade")]
         public List<int> Itens { get; set; }
 
-        [JsonProperty("data-entrega")]
+        [JsonProperty("dataEntrega")]
 		[JsonConverter(typeof(DateFormatConverter), "dd/MM/yyyy")]
-		[Display(Name = "Data de entrega")]
 		public DateTime DataEntrega { get; set; }
+
+		[JsonProperty("entregue")]
+		public bool Entregue { get; set; }
 	}
 
 	internal class DateFormatConverter : IsoDateTimeConverter

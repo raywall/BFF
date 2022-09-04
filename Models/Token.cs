@@ -11,16 +11,16 @@ namespace BFF.Models
             AccesToken = access_token;
         }
 
-        [JsonProperty("access-token")]
+        [JsonProperty("accessToken")]
         public string? AccesToken { get; set; }
 
-        [JsonProperty("token-type")]
+        [JsonProperty("tokenType")]
         public string? TokenType { get; set; }
 
-        [JsonProperty("expires-in")]
+        [JsonProperty("expiresIn")]
         public int ExpiresIn { get; set; }
 
-        [JsonProperty("refresh-token")]
+        [JsonProperty("refreshToken")]
         public string? RefreshToken { get; set; }
 
         [JsonProperty("scope")]

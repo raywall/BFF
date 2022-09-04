@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using BFF.Classes;
 using Newtonsoft.Json;
 
 namespace BFF.Models
@@ -9,16 +10,15 @@ namespace BFF.Models
         [JsonProperty("id")]
         public int ID { get; set; }
 
-        [JsonProperty("id-pedido")]
+        [JsonProperty("idPedido")]
         public int IDPedido { get; set; }
 
-        [JsonProperty("id-produto")]
+        [JsonProperty("idProduto")]
         [Required(ErrorMessage = "Informe o ID do produto")]
         public int IDProduto { get; set; }
 
         [JsonProperty("quantidade")]
-        [Required(ErrorMessage = "A quantidade mínima do pedido deve ser de 1 (uma) unidade")]
-        [Range(1, 10000)]
+        [MinValue(1, ErrorMessage = "A quantidade mínima do pedido deve ser de 1 (uma) unidade")]
         public int Quantidade { get; set; }
     }
 }
