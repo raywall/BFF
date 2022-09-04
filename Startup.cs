@@ -68,6 +68,7 @@ namespace BFF
             app.UseSwagger();
             app.UseSwaggerUI(s => {
                 s.SwaggerEndpoint("v1/swagger.json", AppName);
+                s.DefaultModelsExpandDepth(-1);
             });
 
             app.UseRouting();

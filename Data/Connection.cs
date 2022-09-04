@@ -7,11 +7,13 @@ namespace BFF.Data
     public abstract class Connection : ControllerBase
     {
         public MySqlConnection sqlConn;
-
+        
         public Connection()
         {
+            var args = Environment.GetEnvironmentVariables();
+
             if (sqlConn == null)
-                sqlConn = new MySqlConnection("Server=localhost;Database=teste;Uid=tester;Pwd=tester123;");
+                sqlConn = new MySqlConnection($"Server={args["DBURL"]};Database=teste;Uid={args["DBUSR"]};Pwd={args["DBPWD"]};");
         }
     }
 }
